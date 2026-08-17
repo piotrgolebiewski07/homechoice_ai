@@ -1,3 +1,15 @@
 from django.shortcuts import render
+from .models import Apartment
 
-# Create your views here.
+
+def apartment_list(request):
+    apartments = Apartment.objects.all()
+
+    return render(
+        request,
+        'apartments/apartment_list.html',
+        {
+            "apartments": apartments,
+        }
+    )
+
