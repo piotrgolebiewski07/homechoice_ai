@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mieszkania</title>
+</head>
+<body>
+    <h1>Mieszkania</h1>
+
+    {% for apartment in apartments %}
+        <h2>{{ apartment.city }}</h2>
+        <h3>{{ apartment.district }}</h3>
+        <h3>{{ apartment.area }}</h3>
+        <h3>{{ apartment.price }}</h3>
+    {% endfor %}
+</body>
+</html>
