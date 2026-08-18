@@ -80,7 +80,7 @@
 
 .apartment-row {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1.2fr 1fr 0.9fr 0.6fr 0.6fr 0.8fr;
     align-items: center;
     gap: 16px;
     padding: 16px 18px;
@@ -90,7 +90,6 @@
     border-radius: 10px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
 
 .apartment-row + .apartment-row {
     margin-top: 10px;
@@ -139,28 +138,15 @@
     color: #5b6780;
 }
 
-.apartment-price {
-    text-align: right;
-}
-
 .apartment-floor-rooms {
     margin: 0;
     color: #0f1d46;
     font-weight: 700;
 }
 
-.apartment-floor-rooms span {
-    display: block;
-    margin-bottom: 4px;
-    color: #5b6780;
-    font-size: 0.7rem;
-    font-weight: 400;
-    text-transform: uppercase;
-}
-
 .apartment-table-heading {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1.2fr 1fr 0.9fr 0.6fr 0.6fr 0.8fr;
     gap: 16px;
     padding: 0 18px 10px;
     color: #5b6780;
@@ -170,16 +156,41 @@
     text-transform: uppercase;
 }
 
+.apartment-table-heading p:not(:first-child) {
+    text-align: center;
+}
+
+.apartment-row > :not(:first-child) {
+    justify-self: center;
+    text-align: center;
+}
+
 .apartment-table-heading p,
 .apartment-floor-rooms {
     margin: 0;
 }
 
-.apartment-table-heading p:last-child {
-    text-align: right;
-}
-
 .apartment-floor-rooms {
     color: #0f1d46;
+    font-weight: 700;
+}
+
+.apartment-price-per-sqm,
+.market-badge {
+    margin: 0;
+}
+
+.apartment-price-per-sqm {
+    color: #5b6780;
+    font-size: 0.85rem;
+}
+
+.market-badge {
+    justify-self: start;
+    padding: 5px 8px;
+    color: #6d28d9;
+    background-color: #f4f0ff;
+    border-radius: 999px;
+    font-size: 0.75rem;
     font-weight: 700;
 }

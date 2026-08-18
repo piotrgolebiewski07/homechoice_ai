@@ -16,6 +16,13 @@ class Apartment(models.Model):
     year_built = models.PositiveSmallIntegerField()
     market_type = models.CharField(max_length=20, choices=MARKET_CHOICES)
 
+    @property
+    def price_per_sqm(self):
+        if not self.area:
+            return None
+
+        return self.price / self.area
+
     def __str__(self):
         return f"{self.city} - {self.district} ({self.area}) m² - {self.price}"
 
