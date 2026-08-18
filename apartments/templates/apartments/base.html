@@ -11,6 +11,29 @@
     <title>{% block title %} {% endblock %}</title>
 </head>
 <body>
+<header class="site-header">
+    <nav class="site-nav">
+        <a href="{% url 'apartment_list' %}" class="site-brand">
+            <img src="{% static 'images/homechoice-mark.png' %}" alt="" class="brand-mark">
+            <span>HomeChoice <span class="brand-ai">AI</span></span>
+        </a>
+        <div class="site-nav-links">
+            <a href="{% url 'apartment_list' %}" class="site-nav-link is-active">
+                Mieszkania
+            </a>
+
+            <a href="{% url 'apartment_list' %}" class="site-nav-link">
+                Ulubione
+            </a>
+
+            <a href="{% url 'apartment_list' %}" class="site-nav-link">
+                Raporty
+            </a>
+        </div>
+    </nav>
+</header>
+<main class="site-main">
     {% block site %} {% endblock %}
+</main>
 </body>
 </html>
