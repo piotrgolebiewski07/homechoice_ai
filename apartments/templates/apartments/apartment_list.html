@@ -1,16 +1,72 @@
 {% extends 'apartments/base.html' %}
+{% load static %}
 
 {% block title %}Mieszkania{% endblock %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/apartment_list.css' %}">
+{% endblock %}
+
 {% block site %}
+    <section class="apartment-page">
 
-    <h1>Mieszkania</h1>
+        <div class="apartment-page-heading">
+            <h1>Mieszkania</h1>
+            <p class="page-description">
+                Przeglądaj oferty i porównuj najważniejsze dane mieszkań.
+            </p>
+        </div>
 
-    {% for apartment in apartments %}
-        <h2>{{ apartment.city }}</h2>
-        <h3>{{ apartment.district }}</h3>
-        <h3>{{ apartment.area }}</h3>
-        <h3>{{ apartment.price }}</h3>
-    {% endfor %}
+        <div class="apartment-filters">
+            <div class="filter-group">
+                <p class="filter-label">Lokalizacja</p>
+                <p class="filter-value">Wszystkie miasta</p>
+            </div>
+            <div class="filter-group">
+                <p class="filter-label">Liczba pokoi</p>
+                <p class="filter-value">1</p>
+            </div>
+            <div class="filter-group">
+                <p class="filter-label">Metraż</p>
+                <p class="filter-value">10m2</p>
+            </div>
+        </div>
 
+        <section class="apartments-panel">
+            <div class="apartments-panel-header">
+                <div class="apartment-table-heading">
+                    <p>Lokalizacja</p>
+                    <p>Metraż</p>
+                    <p>Pokoje</p>
+                    <p>Piętro</p>
+                    <p>Cena</p>
+                </div>
+            </div>
+
+            {% for apartment in apartments %}
+                <article class="apartment-row">
+                    <div class="apartment-location">
+                        <p class="apartment-city">{{ apartment.city }}</p>
+                        <p class="apartment-district">{{ apartment.district }}</p>
+                    </div>
+
+                    <p class="apartment-area">
+                        {{ apartment.area }} m²
+                    </p>
+
+                    <p class="apartment-floor-rooms">
+                        {{ apartment.rooms }}
+                    </p>
+
+                    <p class="apartment-floor-rooms">
+                        {{ apartment.floor }}
+                    </p>
+
+                    <p class="apartment-price">
+                        {{ apartment.price }} zł
+                    </p>
+                </article>
+            {% endfor %}
+        </section>
+    </section>
 {% endblock %}
