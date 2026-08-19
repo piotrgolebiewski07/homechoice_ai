@@ -1,5 +1,5 @@
 {% extends 'apartments/base.html' %}
-{% load static %}
+{% load static humanize %}
 
 {% block title %}Mieszkania{% endblock %}
 
@@ -58,11 +58,11 @@
                     </div>
 
                     <p class="apartment-price">
-                        {{ apartment.price }} zł
+                        {{ apartment.price|floatformat:0|intcomma }} zł
                     </p>
 
                     <p class="apartment-price-per-sqm">
-                        {{ apartment.price_per_sqm|floatformat:0 }} zł/m²
+                        {{ apartment.price_per_sqm|floatformat:0|intcomma }} zł/m²
                     </p>
 
                     <p class="apartment-area">
