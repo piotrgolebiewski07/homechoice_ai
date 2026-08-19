@@ -32,10 +32,19 @@ class Command(BaseCommand):
                 "market_type": "unknown",
             }
             apartment = Apartment(**apartment_data)
-            apartment.full_clean()
+            apartment.full_clean(validate_unique=False)
+
+            apartment, created = Apartment.objects.get_or_create(
+                source_id=apartment_data["source_id"],
+                defaults=apartment_data,
+            )
 
         self.stdout.write(f"Kolumny: {headers}")
         self.stdout.write(f"Przygotowany rekord: {apartment_data}")
+        action = "Dodano ofertę" if created else "Oferta już istnieje"
         self.stdout.write(
-            self.style.SUCCESS("Rekord przeszedł walidację modelu.")
+            self.style.SUCCESS(
+                f"{action}: {apartment.city} "
+                f"(source_id: {apartment.source_id})"
+            )
         )
