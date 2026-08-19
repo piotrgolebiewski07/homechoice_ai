@@ -9,6 +9,12 @@ class Apartment(models.Model):
     ]
 
     city = models.CharField(max_length=100)
+    source_id = models.CharField(
+        max_length=32,
+        unique=True,
+        null=True,
+        blank=True,
+    )
     district = models.CharField(max_length=100, blank=True)
     price = models.DecimalField(max_digits=12, decimal_places=2)
     area = models.DecimalField(max_digits=6, decimal_places=2)
