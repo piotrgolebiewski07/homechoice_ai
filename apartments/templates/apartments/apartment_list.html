@@ -1,6 +1,7 @@
 {% extends 'apartments/base.html' %}
 {% load static humanize %}
-
+{% load l10n %}
+{{ apartment.year_built }}
 {% block title %}Mieszkania{% endblock %}
 
 {% block extra_css %}
@@ -22,25 +23,25 @@
                 <p class="filter-label">Lokalizacja</p>
                 <p class="filter-value">Wszystkie miasta</p>
             </div>
-            <div class="filter-group--range">
+            <div class="filter-group filter-group--range">
                 <p class="filter-label">Cena</p>
                 <div class="filter-range">
                     <p class="filter-value">Od</p>
                     <p class="filter-value">Do</p>
                 </div>
             </div>
-            <div class="filter-group--range">
+            <div class="filter-group filter-group--range">
                 <p class="filter-label">Metraż</p>
                 <div class="filter-range">
                     <p class="filter-value">Od</p>
                     <p class="filter-value">Do</p>
                     </div>
             </div>
-            <div class="filter-group--compact">
+            <div class="filter-group filter-group--compact">
                 <p class="filter-label">Liczba pokoi</p>
                 <p class="filter-value">1</p>
             </div>
-            <div class="filter-group--compact">
+            <div class="filter-group filter-group--compact">
                 <p class="filter-label">Piętro</p>
                 <p class="filter-value">1</p>
             </div>
@@ -71,7 +72,7 @@
                 <p>Metraż</p>
                 <p>Pokoje</p>
                 <p>Piętro</p>
-                <p>Rynek</p>
+                <p>Rok budowy</p>
             </div>
 
             {% for apartment in apartments %}
@@ -102,9 +103,12 @@
                     <p class="apartment-floor-rooms">
                         {{ apartment.floor }}
                     </p>
-
-                    <p class="apartment-market">
-                        {{ apartment.get_market_type_display }}
+                    <p class="apartment-year-built">
+                        {% if apartment.year_built %}
+                            {{ apartment.year_built|unlocalize }}
+                        {% else %}
+                            <span>—</span>
+                        {% endif %}
                     </p>
                 </article>
             {% endfor %}
