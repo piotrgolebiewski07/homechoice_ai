@@ -4,7 +4,7 @@
 {% block title %}Mieszkania{% endblock %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/apartment_list.css' %}">
+<link rel="stylesheet" href="{% static 'css/apartment_list.css' %}">
 {% endblock %}
 
 {% block site %}
@@ -22,14 +22,31 @@
                 <p class="filter-label">Lokalizacja</p>
                 <p class="filter-value">Wszystkie miasta</p>
             </div>
-            <div class="filter-group">
+            <div class="filter-group--range">
+                <p class="filter-label">Cena</p>
+                <div class="filter-range">
+                    <p class="filter-value">Od</p>
+                    <p class="filter-value">Do</p>
+                </div>
+            </div>
+            <div class="filter-group--range">
+                <p class="filter-label">Metraż</p>
+                <div class="filter-range">
+                    <p class="filter-value">Od</p>
+                    <p class="filter-value">Do</p>
+                    </div>
+            </div>
+            <div class="filter-group--compact">
                 <p class="filter-label">Liczba pokoi</p>
                 <p class="filter-value">1</p>
             </div>
-            <div class="filter-group">
-                <p class="filter-label">Metraż</p>
-                <p class="filter-value">10m2</p>
+            <div class="filter-group--compact">
+                <p class="filter-label">Piętro</p>
+                <p class="filter-value">1</p>
             </div>
+            <button class="filter-submit-button" type="button">
+                Zastosuj
+            </button>
         </div>
 
         <section class="apartments-panel">
@@ -93,7 +110,7 @@
             {% endfor %}
             <div class="apartments-pagination">
                 <div class="apartments-pagination-summary">
-                    1-10 z 15 ofert
+                    1-10 / 15
                 </div>
                 <div class="apartments-pagination-controls">
                     <a href="{% url 'apartment_list' %}" class="pagination-button">←</a>
@@ -103,6 +120,15 @@
                     <p class="pagination-ellipsis">...</p>
                     <a href="{% url 'apartment_list' %}" class="pagination-page">25</a>
                     <a href="{% url 'apartment_list' %}" class="pagination-button">→</a>
+                </div>
+                <div class="apartments-page-size">
+                    <span class="page-size-label">
+                        Pokaż na stronie:
+                    </span>
+                    <button class="page-size-button" type="button">
+                        <span>10</span>
+                        <span class="page-size-icon">▾</span>
+                    </button>
                 </div>
             </div>
         </section>
