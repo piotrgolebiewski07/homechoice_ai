@@ -1,0 +1,40 @@
+{% load static %}
+
+<!doctype html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block extra_css %}{% endblock %}
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<body>
+<header class="site-header">
+    <nav class="site-nav">
+        <a href="{% url 'apartment_list' %}" class="site-brand">
+            <img src="{% static 'images/homechoice-mark.png' %}" alt="" class="brand-mark">
+            <span>HomeChoice <span class="brand-ai">AI</span></span>
+        </a>
+        <div class="site-nav-links">
+            <a href="{% url 'apartment_list' %}" class="site-nav-link is-active">
+                Mieszkania
+            </a>
+
+            <a href="{% url 'apartment_list' %}" class="site-nav-link">
+                Ulubione
+            </a>
+
+            <a href="{% url 'apartment_list' %}" class="site-nav-link">
+                Raporty
+            </a>
+        </div>
+    </nav>
+</header>
+<main class="site-main">
+    {% block site %} {% endblock %}
+</main>
+</body>
+</html>
