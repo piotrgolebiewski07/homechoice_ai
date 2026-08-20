@@ -38,6 +38,13 @@
                     <h2>Lista mieszkań</h2>
                     <p>{{ apartments|length }} ofert dostępnych</p>
                 </div>
+                <div class="apartments-panel-actions">
+                    <span class="sort-label">Sortuj:</span>
+                    <button class="sort-button" type="button">
+                        <span class="sort-button-value">najnowsze</span>
+                        <span class="sort-button-icon">▾</span>
+                    </button>
+                </div>
             </div>
 
             <div class="apartment-table-heading">
@@ -54,7 +61,9 @@
                 <article class="apartment-row">
                     <div class="apartment-location">
                         <p class="apartment-city">{{ apartment.city }}</p>
-                        <p class="apartment-district">{{ apartment.district }}</p>
+                        {% if apartment.district %}
+                            <p class="apartment-district">{{ apartment.district }}</p>
+                        {% endif %}
                     </div>
 
                     <p class="apartment-price">
@@ -77,11 +86,25 @@
                         {{ apartment.floor }}
                     </p>
 
-                    <p class="market-badge">
+                    <p class="apartment-market">
                         {{ apartment.get_market_type_display }}
                     </p>
                 </article>
             {% endfor %}
+            <div class="apartments-pagination">
+                <div class="apartments-pagination-summary">
+                    1-10 z 15 ofert
+                </div>
+                <div class="apartments-pagination-controls">
+                    <a href="{% url 'apartment_list' %}" class="pagination-button">←</a>
+                    <a href="{% url 'apartment_list' %}" class="pagination-page is-active">1</a>
+                    <a href="{% url 'apartment_list' %}" class="pagination-page">2</a>
+                    <a href="{% url 'apartment_list' %}" class="pagination-page">3</a>
+                    <p class="pagination-ellipsis">...</p>
+                    <a href="{% url 'apartment_list' %}" class="pagination-page">25</a>
+                    <a href="{% url 'apartment_list' %}" class="pagination-button">→</a>
+                </div>
+            </div>
         </section>
     </section>
 {% endblock %}

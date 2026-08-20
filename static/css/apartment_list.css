@@ -61,6 +61,10 @@
 }
 
 .apartments-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
     padding-bottom: 18px;
     margin-bottom: 18px;
     border-bottom: 1px solid #e3e8f0;
@@ -78,6 +82,7 @@
     font-size: 0.9rem;
 }
 
+
 .apartment-row {
     display: grid;
     grid-template-columns: 2fr 1.2fr 1fr 0.9fr 0.6fr 0.6fr 0.8fr;
@@ -88,7 +93,13 @@
     border: 1px solid #e3e8f0;
     border-left: 4px solid #0ea5e9;
     border-radius: 10px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.apartment-row:hover {
+    background-color: #f8f7ff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(15, 29, 70, 0.08);
 }
 
 .apartment-row + .apartment-row {
@@ -175,8 +186,7 @@
     font-weight: 700;
 }
 
-.apartment-price-per-sqm,
-.market-badge {
+.apartment-price-per-sqm {
     margin: 0;
 }
 
@@ -185,12 +195,102 @@
     font-size: 0.85rem;
 }
 
-.market-badge {
-    justify-self: start;
-    padding: 5px 8px;
+.apartment-market {
+    margin: 0;
+    color: #5b6780;
+    font-size: 0.85rem;
+
+}
+
+/* Sortowanie */
+.apartments-panel-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sort-label {
+    color: #5b6780;
+}
+
+.sort-button {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 14px;
+    color: #0f1d46;
+    background-color: #ffffff;
+    border: 1px solid #e3e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.sort-button:hover {
     color: #6d28d9;
     background-color: #f4f0ff;
-    border-radius: 999px;
-    font-size: 0.75rem;
+    border-color: #c4b5fd;
+}
+
+.sort-button-icon {
+    color: #8b5cf6;
+    transform: translateY(1px);
+}
+
+/* Paginacja */
+.apartments-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid #e3e8f0;
+}
+
+.apartments-pagination-summary {
+    margin: 0;
+    color: #5b6780;
+    font-size: 0.85rem;
+}
+
+.apartments-pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pagination-button,
+.pagination-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 34px;
+    color: #0f1d46;
+    background-color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
     font-weight: 700;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.pagination-button:hover,
+.pagination-page:hover {
+    color: #6d28d9;
+    transform: translateY(-1px);
+}
+
+.pagination-page.is-active,
+.pagination-page.is-active:hover {
+    transform: none;
+    color: #8b5cf6;
+    box-shadow: inset 0 -1px 0 #8b5cf6;
+}
+
+.pagination-ellipsis {
+    margin: 0;
+    color: #5b6780;
 }
