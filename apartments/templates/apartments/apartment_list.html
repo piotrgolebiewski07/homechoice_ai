@@ -11,44 +11,53 @@
 {% block site %}
     <section class="apartment-page">
 
-        <div class="apartment-page-heading">
-            <h1>Mieszkania</h1>
-            <p class="page-description">
-                Przeglądaj oferty i porównuj najważniejsze dane mieszkań.
-            </p>
-        </div>
+        <section class="apartment-hero">
+            <div class="apartment-hero-content">
+                <h1>Znajdź mieszkanie, które pasuje do Ciebie</h1>
+                <p class="page-description">Przeglądaj ofery i porównuj najważniejsze dane mieszkań.</p>
+            </div>
 
-        <div class="apartment-filters">
-            <div class="filter-group">
-                <p class="filter-label">Lokalizacja</p>
-                <p class="filter-value">Wszystkie miasta</p>
-            </div>
-            <div class="filter-group filter-group--range">
-                <p class="filter-label">Cena</p>
-                <div class="filter-range">
-                    <p class="filter-value">Od</p>
-                    <p class="filter-value">Do</p>
+            <img
+                src="{% static 'images/construction.png' %}"
+                alt=""
+                aria-hidden="true"
+                class="apartment-hero-illustration"
+                >
+
+            <div class="apartment-filters">
+                <div class="filter-group">
+                    <p class="filter-label">Lokalizacja</p>
+                    <p class="filter-value">Wszystkie miasta</p>
                 </div>
-            </div>
-            <div class="filter-group filter-group--range">
-                <p class="filter-label">Metraż</p>
-                <div class="filter-range">
-                    <p class="filter-value">Od</p>
-                    <p class="filter-value">Do</p>
+                <div class="filter-group filter-group--range">
+                    <p class="filter-label">Cena</p>
+                    <div class="filter-range">
+                        <p class="filter-value">Od</p>
+                        <p class="filter-value">Do</p>
                     </div>
+                </div>
+                <div class="filter-group filter-group--range">
+                    <p class="filter-label">Metraż</p>
+                    <div class="filter-range">
+                        <p class="filter-value">Od</p>
+                        <p class="filter-value">Do</p>
+                        </div>
+                </div>
+                <div class="filter-group filter-group--compact">
+                    <p class="filter-label">Liczba pokoi</p>
+                    <p class="filter-value">1</p>
+                </div>
+                <div class="filter-group filter-group--compact">
+                    <p class="filter-label">Piętro</p>
+                    <p class="filter-value">1</p>
+                </div>
+                <button class="filter-submit-button" type="button">
+                    Zastosuj
+                </button>
             </div>
-            <div class="filter-group filter-group--compact">
-                <p class="filter-label">Liczba pokoi</p>
-                <p class="filter-value">1</p>
-            </div>
-            <div class="filter-group filter-group--compact">
-                <p class="filter-label">Piętro</p>
-                <p class="filter-value">1</p>
-            </div>
-            <button class="filter-submit-button" type="button">
-                Zastosuj
-            </button>
-        </div>
+        </section>
+
+
 
         <section class="apartments-panel">
             <div class="apartments-panel-header">
