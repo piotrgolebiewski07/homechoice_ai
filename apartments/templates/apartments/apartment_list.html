@@ -1,7 +1,7 @@
 {% extends 'apartments/base.html' %}
 {% load static humanize %}
 {% load l10n %}
-{{ apartment.year_built }}
+
 {% block title %}Mieszkania{% endblock %}
 
 {% block extra_css %}
@@ -24,103 +24,158 @@
                 class="apartment-hero-illustration"
                 >
 
-            <div class="apartment-filters">
+            <form method="get" class="apartment-filters">
                 <div class="filter-group">
                     <p class="filter-label">Lokalizacja</p>
-                    <p class="filter-value">Wszystkie miasta</p>
+                    <input
+                            type="text"
+                            name="city"
+                            class="filter-value"
+                            placeholder="wpisz miasto"
+                            value="{{ selected_city }}"
+                    >
                 </div>
                 <div class="filter-group filter-group--range">
                     <p class="filter-label">Cena</p>
                     <div class="filter-range">
-                        <p class="filter-value">Od</p>
-                        <p class="filter-value">Do</p>
+                        <input
+                                type="number"
+                                name="min_price"
+                                class="filter-value"
+                                placeholder="od"
+                                value="{{ min_price }}"
+                        >
+                        <input
+                                type="number"
+                                name="max_price"
+                                class="filter-value"
+                                placeholder="do"
+                                value="{{ max_price }}"
+                        >
                     </div>
                 </div>
                 <div class="filter-group filter-group--range">
                     <p class="filter-label">Metraż</p>
                     <div class="filter-range">
-                        <p class="filter-value">Od</p>
-                        <p class="filter-value">Do</p>
-                        </div>
+                        <input
+                                type="number"
+                                name="min_area"
+                                class="filter-value"
+                                placeholder="od"
+                                value="{{ min_area }}"
+                        >
+                        <input
+                                type="number"
+                                name="max_area"
+                                class="filter-value"
+                                placeholder="do"
+                                value="{{ max_area }}"
+                        >
+                    </div>
                 </div>
                 <div class="filter-group filter-group--compact">
                     <p class="filter-label">Liczba pokoi</p>
-                    <p class="filter-value">1</p>
+                    <select name="rooms_number" class="filter-value">
+                        <option value="" {% if not rooms_number %}selected{% endif %}>Dowolna</option>
+                        <option value="1" {% if rooms_number == "1" %}selected{% endif %}>1</option>
+                        <option value="2" {% if rooms_number == "2" %}selected{% endif %}>2</option>
+                        <option value="3" {% if rooms_number == "3" %}selected{% endif %}>3</option>
+                        <option value="4" {% if rooms_number == "4" %}selected{% endif %}>4</option>
+                        <option value="5_plus" {% if rooms_number == "5_plus" %}selected{% endif %}>5+</option>
+                    </select>
                 </div>
                 <div class="filter-group filter-group--compact">
                     <p class="filter-label">Piętro</p>
-                    <p class="filter-value">1</p>
+                    <select name="floor_number" class="filter-value">
+                        <option value="" {% if not floor_number %}selected{% endif %}>Dowolne</option>
+                        <option value="1" {% if floor_number == "1" %}selected{% endif %}>1</option>
+                        <option value="2" {% if floor_number == "2" %}selected{% endif %}>2</option>
+                        <option value="3" {% if floor_number == "3" %}selected{% endif %}>3</option>
+                        <option value="4" {% if floor_number == "4" %}selected{% endif %}>4</option>
+                        <option value="5_plus" {% if floor_number == "5_plus" %}selected{% endif %}>5+</option>
+                    </select>
                 </div>
-                <button class="filter-submit-button" type="button">
+                <button class="filter-submit-button" type="submit">
                     Zastosuj
                 </button>
-            </div>
+            </form>
         </section>
 
 
 
         <section class="apartments-panel">
-            <div class="apartments-panel-header">
+            <div class="apartments-panel-header {% if not apartments %}apartments-panel-header--empty{% endif %}">
                 <div>
                     <h2>Lista mieszkań</h2>
                     <p>{{ apartments|length }} ofert dostępnych</p>
                 </div>
-                <div class="apartments-panel-actions">
-                    <span class="sort-label">Sortuj:</span>
-                    <button class="sort-button" type="button">
-                        <span class="sort-button-value">najnowsze</span>
-                        <span class="sort-button-icon">▾</span>
-                    </button>
-                </div>
-            </div>
-
-            <div class="apartment-table-heading">
-                <p>Lokalizacja</p>
-                <p>Cena</p>
-                <p>Cena za m²</p>
-                <p>Metraż</p>
-                <p>Pokoje</p>
-                <p>Piętro</p>
-                <p>Rok budowy</p>
-            </div>
-
-            {% for apartment in apartments %}
-                <article class="apartment-row">
-                    <div class="apartment-location">
-                        <p class="apartment-city">{{ apartment.city }}</p>
-                        {% if apartment.district %}
-                            <p class="apartment-district">{{ apartment.district }}</p>
-                        {% endif %}
+                {% if apartments %}
+                    <div class="apartments-panel-actions">
+                        <span class="sort-label">Sortuj:</span>
+                        <button class="sort-button" type="button">
+                            <span class="sort-button-value">najnowsze</span>
+                            <span class="sort-button-icon">▾</span>
+                        </button>
                     </div>
+                {% endif %}
+            </div>
 
-                    <p class="apartment-price">
-                        {{ apartment.price|floatformat:0|intcomma }} zł
-                    </p>
+            {% if apartments %}
+                <div class="apartment-table-heading">
+                    <p>Lokalizacja</p>
+                    <p>Cena</p>
+                    <p>Cena za m²</p>
+                    <p>Metraż</p>
+                    <p>Pokoje</p>
+                    <p>Piętro</p>
+                    <p>Rok budowy</p>
+                </div>
 
-                    <p class="apartment-price-per-sqm">
-                        {{ apartment.price_per_sqm|floatformat:0|intcomma }} zł/m²
-                    </p>
+                {% for apartment in apartments %}
+                    <article class="apartment-row">
+                        <div class="apartment-location">
+                            <p class="apartment-city">{{ apartment.city }}</p>
+                            {% if apartment.district %}
+                                <p class="apartment-district">{{ apartment.district }}</p>
+                            {% endif %}
+                        </div>
 
-                    <p class="apartment-area">
-                        {{ apartment.area }} m²
-                    </p>
+                        <p class="apartment-price">
+                            {{ apartment.price|floatformat:0|intcomma }} zł
+                        </p>
 
-                    <p class="apartment-floor-rooms">
-                        {{ apartment.rooms }}
-                    </p>
+                        <p class="apartment-price-per-sqm">
+                            {{ apartment.price_per_sqm|floatformat:0|intcomma }} zł/m²
+                        </p>
 
-                    <p class="apartment-floor-rooms">
-                        {{ apartment.floor }}
-                    </p>
-                    <p class="apartment-year-built">
-                        {% if apartment.year_built %}
-                            {{ apartment.year_built|unlocalize }}
-                        {% else %}
-                            <span>—</span>
-                        {% endif %}
-                    </p>
-                </article>
-            {% endfor %}
+                        <p class="apartment-area">
+                            {{ apartment.area }} m²
+                        </p>
+
+                        <p class="apartment-floor-rooms">
+                            {{ apartment.rooms }}
+                        </p>
+
+                        <p class="apartment-floor-rooms">
+                            {{ apartment.floor }}
+                        </p>
+                        <p class="apartment-year-built">
+                            {% if apartment.year_built %}
+                                {{ apartment.year_built|unlocalize }}
+                            {% else %}
+                                <span>—</span>
+                            {% endif %}
+                        </p>
+                    </article>
+                {% endfor %}
+            {% else %}
+                <div class="apartments-empty-state">
+                    <p>Nie znaleźliśmy mieszkań spełniających wybrane kryteria.</p>
+                    <p>Zmień lub wyczyść filtry</p>
+                </div>
+            {% endif %}
+
+            {% if apartments %}
             <div class="apartments-pagination">
                 <div class="apartments-pagination-summary">
                     1-10 / 15
@@ -144,6 +199,7 @@
                     </button>
                 </div>
             </div>
+            {% endif %}
         </section>
     </section>
 {% endblock %}
