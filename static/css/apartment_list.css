@@ -58,37 +58,68 @@
 .apartment-filters {
     flex-wrap: wrap;
     align-items: flex-end;
+    justify-content: space-between;
     display: flex;
-    gap: 16px;
+    gap: 12px;
     margin-top: auto;
     margin-bottom: 10px;
-    padding: 16px;
+    padding: 12px;
     background-color: #ffffff;
     border: 1px solid #e3e8f0;
     border-radius: 12px;
-    opacity: 0.8;
+    opacity: 0.9;
+}
+
+.apartments-empty-state {
+    padding: 28px;
+    text-align: center;
+    color: #5b6780;
+
+}
+
+.apartments-empty-state p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.apartments-empty-state p:first-child {
+    color: #0f1d46;
+    font-weight: 700;
+}
+
+.apartments-empty-state p + p {
+    margin-top: 6px;
 }
 
 .filter-range {
     display: flex;
-    gap: 8px;
-}
-
-.filter-range .filter-value {
-    flex: 1;
+    gap: 12px;
 }
 
 .filter-group {
     min-width: 150px;
 }
 
-.filter-group--range {
-    min-width: 220px;
+.filter-range .filter-value {
+    flex: 1 1 0;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.filter-group.filter-group--range {
+    flex: 0 0 250px;
+    min-width: 200px;
 }
 
 .filter-group--compact {
     min-width: 80px;
     flex: 0 1 80px;
+}
+
+.filter-group--compact .filter-value {
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .filter-label {
@@ -142,6 +173,12 @@
     padding-bottom: 18px;
     margin-bottom: 18px;
     border-bottom: 1px solid #c4b5fd;
+}
+
+.apartments-panel-header--empty {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-bottom: 0;
 }
 
 .apartments-panel-header h2 {
