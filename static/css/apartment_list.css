@@ -337,21 +337,21 @@
     align-items: center;
     justify-content: center;
     padding: 10px 14px;
-    color: #0f1d46;
+    color: #5b6780;
     background-color: #ffffff;
     border: 1px solid #e3e8f0;
     border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 500;
+    font-size: 0.85rem;
+    font-weight: 400;
     cursor: pointer;
     transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .sort-button:hover,
 .page-size-button:hover {
-    color: #6d28d9;
-    background-color: #f4f0ff;
-    border-color: #c4b5fd;
+    color: #5b6780;
+    font-size: 0.85rem;
+    font-weight: 400;
 }
 
 .sort-button-icon,

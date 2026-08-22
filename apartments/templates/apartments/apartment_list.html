@@ -120,6 +120,8 @@
                         <select name="sort_by" class="sort-button" onchange="this.form.submit()">
                             <option value="city_asc" {% if sort_by == "city_asc" %}selected{% endif %}>Miasto od A do Z</option>
                             <option value="city_desc" {% if sort_by == "city_desc" %}selected{% endif %}>Miasto od Z do A</option>
+                            <option value="price_per_sqm_asc" {% if sort_by == "price_per_sqm_asc" %}selected{% endif %}>Najniższa cena za m2</option>
+                            <option value="price_per_sqm_desc" {% if sort_by == "price_per_sqm_desc" %}selected{% endif %}>Najwyższa cena za m2</option>
                             <option value="price_asc" {% if sort_by == "price_asc" %}selected{% endif %}>Najtańsze</option>
                             <option value="price_desc" {% if sort_by == "price_desc" %}selected{% endif %}>Najdroższe</option>
                             <option value="area_asc" {% if sort_by == "area_asc" %}selected{% endif %}>Najmniejszy metraż</option>

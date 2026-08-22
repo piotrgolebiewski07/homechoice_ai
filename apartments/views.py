@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Apartment
+from django.db.models import F
 
 
 def apartment_list(request):
@@ -41,6 +42,8 @@ def apartment_list(request):
         else:
             apartments = apartments.filter(floor=floor_number)
 
+    apartments = apartments.annotate(price_per_sqm_sort=F("price") / F("area"))
+
     # Sorting
     sort_by = request.GET.get("sort_by", "newest")
     sort_fields = {
@@ -56,6 +59,8 @@ def apartment_list(request):
         "floor_desc": "-floor",
         "newest": "-year_built",
         "oldest": "year_built",
+        "price_per_sqm_asc": "price_per_sqm_sort",
+        "price_per_sqm_desc": "-price_per_sqm_sort",
     }
     sort_field = sort_fields.get(sort_by, "-year_built")
     apartments = apartments.order_by(sort_field)
