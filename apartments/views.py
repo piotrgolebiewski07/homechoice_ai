@@ -4,6 +4,8 @@ from .models import Apartment
 
 def apartment_list(request):
     apartments = Apartment.objects.all()
+
+    # Filtering
     selected_city = request.GET.get("city", "")
     min_price = request.GET.get("min_price", "")
     max_price = request.GET.get("max_price", "")
@@ -39,6 +41,25 @@ def apartment_list(request):
         else:
             apartments = apartments.filter(floor=floor_number)
 
+    # Sorting
+    sort_by = request.GET.get("sort_by", "newest")
+    sort_fields = {
+        "city_asc": "city",
+        "city_desc": "-city",
+        "price_asc": "price",
+        "price_desc": "-price",
+        "area_asc": "area",
+        "area_desc": "-area",
+        "room_asc": "rooms",
+        "room_desc": "-rooms",
+        "floor_asc": "floor",
+        "floor_desc": "-floor",
+        "newest": "-year_built",
+        "oldest": "year_built",
+    }
+    sort_field = sort_fields.get(sort_by, "-year_built")
+    apartments = apartments.order_by(sort_field)
+
     return render(
         request,
         'apartments/apartment_list.html',
@@ -51,6 +72,7 @@ def apartment_list(request):
             "max_area": max_area,
             "rooms_number": rooms_number,
             "floor_number": floor_number,
+            "sort_by": sort_by,
         }
     )
 
