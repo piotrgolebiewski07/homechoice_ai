@@ -101,8 +101,6 @@
             </form>
         </section>
 
-
-
         <section class="apartments-panel">
             <div class="apartments-panel-header {% if not apartments %}apartments-panel-header--empty{% endif %}">
                 <div>
@@ -110,13 +108,33 @@
                     <p>{{ apartments|length }} ofert dostępnych</p>
                 </div>
                 {% if apartments %}
-                    <div class="apartments-panel-actions">
+                    <form method="get" class="apartments-panel-actions">
+                        <input type="hidden" name="city" value="{{ selected_city }}">
+                        <input type="hidden" name="min_price" value="{{ min_price }}">
+                        <input type="hidden" name="max_price" value="{{ max_price }}">
+                        <input type="hidden" name="min_area" value="{{ min_area }}">
+                        <input type="hidden" name="max_area" value="{{ max_area }}">
+                        <input type="hidden" name="rooms_number" value="{{ rooms_number }}">
+                        <input type="hidden" name="floor_number" value="{{ floor_number }}">
                         <span class="sort-label">Sortuj:</span>
-                        <button class="sort-button" type="button">
-                            <span class="sort-button-value">najnowsze</span>
-                            <span class="sort-button-icon">▾</span>
-                        </button>
-                    </div>
+                        <select name="sort_by" class="sort-button" onchange="this.form.submit()">
+                            <option value="city_asc" {% if sort_by == "city_asc" %}selected{% endif %}>Miasto od A do Z</option>
+                            <option value="city_desc" {% if sort_by == "city_desc" %}selected{% endif %}>Miasto od Z do A</option>
+                            <option value="price_per_sqm_asc" {% if sort_by == "price_per_sqm_asc" %}selected{% endif %}>Najniższa cena za m2</option>
+                            <option value="price_per_sqm_desc" {% if sort_by == "price_per_sqm_desc" %}selected{% endif %}>Najwyższa cena za m2</option>
+                            <option value="price_asc" {% if sort_by == "price_asc" %}selected{% endif %}>Najtańsze</option>
+                            <option value="price_desc" {% if sort_by == "price_desc" %}selected{% endif %}>Najdroższe</option>
+                            <option value="area_asc" {% if sort_by == "area_asc" %}selected{% endif %}>Najmniejszy metraż</option>
+                            <option value="area_desc" {% if sort_by == "area_desc" %}selected{% endif %}>Największy metraż</option>
+                            <option value="room_asc" {% if sort_by == "room_asc" %}selected{% endif %}>Najmniej pokoi</option>
+                            <option value="room_desc" {% if sort_by == "room_desc" %}selected{% endif %}>Najwięcej pokoi</option>
+                            <option value="floor_asc" {% if sort_by == "floor_asc" %}selected{% endif %}>Najniższe piętro</option>
+                            <option value="floor_desc" {% if sort_by == "floor_desc" %}selected{% endif %}>Najwyższe piętro</option>
+                            <option value="newest" {% if sort_by == "newest" %}selected{% endif %}>Najnowsze</option>
+                            <option value="oldest" {% if sort_by == "oldest" %}selected{% endif %}>Najstarsze</option>
+                        </select>
+
+                    </form>
                 {% endif %}
             </div>
 
