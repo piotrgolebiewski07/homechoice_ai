@@ -113,13 +113,18 @@
 }
 
 .filter-group--compact {
-    min-width: 80px;
-    flex: 0 1 80px;
+    min-width: 100px;
+    flex: 0 0 100px;
 }
 
 .filter-group--compact .filter-value {
     width: 100%;
     box-sizing: border-box;
+}
+
+.filter-group--compact .filter-value,
+.filter-group--compact .filter-value option {
+    color: #5b6780;
 }
 
 .filter-label {
@@ -144,17 +149,36 @@
     min-height: 40px;
     color: #ffffff;
     background-color: #6d28d9;
-    border: 0;
+    border: 1px solid transparent;
     border-radius: 8px;
     font-size: 0.85rem;
     font-weight: 700;
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .filter-submit-button:hover {
-    background-color: #5b21b6;
-    transform: translateY(-1px);
+    color: #ffffff;
+    background-color: #7c3aed;
+    border-color: #7c3aed;
+}
+
+.filter-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.filter-reset-link {
+    color: #5b6780;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.filter-reset-link:hover {
+    color: #7c3aed;
 }
 
 .apartments-panel {
@@ -345,13 +369,6 @@
     font-weight: 400;
     cursor: pointer;
     transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
-}
-
-.sort-button:hover,
-.page-size-button:hover {
-    color: #5b6780;
-    font-size: 0.85rem;
-    font-weight: 400;
 }
 
 .sort-button-icon,

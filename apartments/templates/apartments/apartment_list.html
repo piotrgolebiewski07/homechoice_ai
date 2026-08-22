@@ -41,6 +41,8 @@
                         <input
                                 type="number"
                                 name="min_price"
+                                step="10000"
+                                min="0"
                                 class="filter-value"
                                 placeholder="od"
                                 value="{{ min_price }}"
@@ -48,6 +50,8 @@
                         <input
                                 type="number"
                                 name="max_price"
+                                step="10000"
+                                min="0"
                                 class="filter-value"
                                 placeholder="do"
                                 value="{{ max_price }}"
@@ -95,9 +99,15 @@
                         <option value="5_plus" {% if floor_number == "5_plus" %}selected{% endif %}>5+</option>
                     </select>
                 </div>
-                <button class="filter-submit-button" type="submit">
-                    Zastosuj
-                </button>
+                <div class="filter-actions">
+                    <a href="{% url 'apartment_list' %}?sort_by={{ sort_by }}" class="filter-reset-link">
+                        Wyczyść filtry
+                    </a>
+
+                    <button class="filter-submit-button" type="submit">
+                        Zastosuj
+                    </button>
+                </div>
             </form>
         </section>
 
