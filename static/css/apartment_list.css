@@ -355,7 +355,6 @@
 }
 
 .sort-button,
-.page-size-button {
     display: flex;
     gap: 10px;
     align-items: center;
@@ -371,10 +370,8 @@
     transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
-.sort-button-icon,
-.page-size-icon {
+.sort-button-icon {
     color: #8b5cf6;
-    transform: translateY(1px);
 }
 
 /* Paginacja */
@@ -397,6 +394,43 @@
     align-items: center;
     justify-self: center;
     gap: 8px;
+}
+
+.apartments-pagination-controls a,
+.apartments-pagination-controls .is-active {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    padding: 0 10px;
+    border: 1px solid #e3e8f0;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #5b6780;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.apartments-pagination-controls a:hover {
+    border-color: #6d28d9;
+    background-color: #f4f0ff;
+    color: #6d28d9;
+    transform: translateY(-1px);
+}
+
+.apartments-pagination-controls .is-active {
+    border-color: #6d28d9;
+    background-color: #6d28d9;
+    color: #ffffff;
+}
+
+.pagination-ellipsis {
+    min-width: 20px;
+    color: #8a94a6;
+    text-align: center;
 }
 
 .apartments-page-size {
@@ -437,4 +471,9 @@
 .pagination-ellipsis {
     margin: 0;
     color: #5b6780;
+}
+
+.page-size-select {
+    min-width: 72px;
+    cursor: pointer;
 }
