@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from .models import Apartment
 from django.db.models import F
+from django.core.paginator import Paginator
+
+PAGE_SIZE_OPTIONS = (10, 20, 50)
 
 
 def apartment_list(request):
@@ -65,11 +68,38 @@ def apartment_list(request):
     sort_field = sort_fields.get(sort_by, "-year_built")
     apartments = apartments.order_by(sort_field)
 
+    per_page = request.GET.get("per_page", "10")
+    try:
+        per_page = int(per_page)
+    except (TypeError, ValueError):
+        per_page = 10
+
+    if per_page not in PAGE_SIZE_OPTIONS:
+        per_page = 10
+
+    paginator = Paginator(apartments, per_page)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    page_range = paginator.get_elided_page_range(
+        number=page_obj.number,
+        on_each_side=1,
+        on_ends=1,
+    )
+
+    query_params = request.GET.copy()
+    query_params.pop("page", None)
+    query_string = query_params.urlencode()
+
+    page_size_params = request.GET.copy()
+    page_size_params.pop("page", None)
+    page_size_params.pop("per_page", None)
+    page_size_query_string = page_size_params.urlencode()
+
     return render(
         request,
         'apartments/apartment_list.html',
         {
-            "apartments": apartments,
+            "apartments": page_obj,
             "selected_city": selected_city,
             "min_price": min_price,
             "max_price": max_price,
@@ -78,6 +108,13 @@ def apartment_list(request):
             "rooms_number": rooms_number,
             "floor_number": floor_number,
             "sort_by": sort_by,
+            "page_obj": page_obj,
+            "query_string": query_string,
+            "page_range": page_range,
+            "per_page": per_page,
+            "per_page": per_page,
+            "page_size_options": PAGE_SIZE_OPTIONS,
+            "page_size_query_string": page_size_query_string,
         }
     )
 

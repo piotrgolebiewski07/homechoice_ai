@@ -25,89 +25,91 @@
                 >
 
             <form method="get" class="apartment-filters">
-                <div class="filter-group">
-                    <p class="filter-label">Lokalizacja</p>
-                    <input
-                            type="text"
-                            name="city"
-                            class="filter-value"
-                            placeholder="wpisz miasto"
-                            value="{{ selected_city }}"
-                    >
-                </div>
-                <div class="filter-group filter-group--range">
-                    <p class="filter-label">Cena</p>
-                    <div class="filter-range">
+                <input type="hidden" name="per_page" value="{{ per_page }}">
+                <input type="hidden" name="sort_by" value="{{ sort_by }}">
+                    <div class="filter-group">
+                        <p class="filter-label">Lokalizacja</p>
                         <input
-                                type="number"
-                                name="min_price"
-                                step="10000"
-                                min="0"
+                                type="text"
+                                name="city"
                                 class="filter-value"
-                                placeholder="od"
-                                value="{{ min_price }}"
-                        >
-                        <input
-                                type="number"
-                                name="max_price"
-                                step="10000"
-                                min="0"
-                                class="filter-value"
-                                placeholder="do"
-                                value="{{ max_price }}"
+                                placeholder="wpisz miasto"
+                                value="{{ selected_city }}"
                         >
                     </div>
-                </div>
-                <div class="filter-group filter-group--range">
-                    <p class="filter-label">Metraż</p>
-                    <div class="filter-range">
-                        <input
-                                type="number"
-                                name="min_area"
-                                class="filter-value"
-                                placeholder="od"
-                                value="{{ min_area }}"
-                        >
-                        <input
-                                type="number"
-                                name="max_area"
-                                class="filter-value"
-                                placeholder="do"
-                                value="{{ max_area }}"
-                        >
+                    <div class="filter-group filter-group--range">
+                        <p class="filter-label">Cena</p>
+                        <div class="filter-range">
+                            <input
+                                    type="number"
+                                    name="min_price"
+                                    step="10000"
+                                    min="0"
+                                    class="filter-value"
+                                    placeholder="od"
+                                    value="{{ min_price }}"
+                            >
+                            <input
+                                    type="number"
+                                    name="max_price"
+                                    step="10000"
+                                    min="0"
+                                    class="filter-value"
+                                    placeholder="do"
+                                    value="{{ max_price }}"
+                            >
+                        </div>
                     </div>
-                </div>
-                <div class="filter-group filter-group--compact">
-                    <p class="filter-label">Liczba pokoi</p>
-                    <select name="rooms_number" class="filter-value">
-                        <option value="" {% if not rooms_number %}selected{% endif %}>Dowolna</option>
-                        <option value="1" {% if rooms_number == "1" %}selected{% endif %}>1</option>
-                        <option value="2" {% if rooms_number == "2" %}selected{% endif %}>2</option>
-                        <option value="3" {% if rooms_number == "3" %}selected{% endif %}>3</option>
-                        <option value="4" {% if rooms_number == "4" %}selected{% endif %}>4</option>
-                        <option value="5_plus" {% if rooms_number == "5_plus" %}selected{% endif %}>5+</option>
-                    </select>
-                </div>
-                <div class="filter-group filter-group--compact">
-                    <p class="filter-label">Piętro</p>
-                    <select name="floor_number" class="filter-value">
-                        <option value="" {% if not floor_number %}selected{% endif %}>Dowolne</option>
-                        <option value="1" {% if floor_number == "1" %}selected{% endif %}>1</option>
-                        <option value="2" {% if floor_number == "2" %}selected{% endif %}>2</option>
-                        <option value="3" {% if floor_number == "3" %}selected{% endif %}>3</option>
-                        <option value="4" {% if floor_number == "4" %}selected{% endif %}>4</option>
-                        <option value="5_plus" {% if floor_number == "5_plus" %}selected{% endif %}>5+</option>
-                    </select>
-                </div>
-                <div class="filter-actions">
-                    <a href="{% url 'apartment_list' %}?sort_by={{ sort_by }}" class="filter-reset-link">
-                        Wyczyść filtry
-                    </a>
+                    <div class="filter-group filter-group--range">
+                        <p class="filter-label">Metraż</p>
+                        <div class="filter-range">
+                            <input
+                                    type="number"
+                                    name="min_area"
+                                    class="filter-value"
+                                    placeholder="od"
+                                    value="{{ min_area }}"
+                            >
+                            <input
+                                    type="number"
+                                    name="max_area"
+                                    class="filter-value"
+                                    placeholder="do"
+                                    value="{{ max_area }}"
+                            >
+                        </div>
+                    </div>
+                    <div class="filter-group filter-group--compact">
+                        <p class="filter-label">Liczba pokoi</p>
+                        <select name="rooms_number" class="filter-value">
+                            <option value="" {% if not rooms_number %}selected{% endif %}>Dowolna</option>
+                            <option value="1" {% if rooms_number == "1" %}selected{% endif %}>1</option>
+                            <option value="2" {% if rooms_number == "2" %}selected{% endif %}>2</option>
+                            <option value="3" {% if rooms_number == "3" %}selected{% endif %}>3</option>
+                            <option value="4" {% if rooms_number == "4" %}selected{% endif %}>4</option>
+                            <option value="5_plus" {% if rooms_number == "5_plus" %}selected{% endif %}>5+</option>
+                        </select>
+                    </div>
+                    <div class="filter-group filter-group--compact">
+                        <p class="filter-label">Piętro</p>
+                        <select name="floor_number" class="filter-value">
+                            <option value="" {% if not floor_number %}selected{% endif %}>Dowolne</option>
+                            <option value="1" {% if floor_number == "1" %}selected{% endif %}>1</option>
+                            <option value="2" {% if floor_number == "2" %}selected{% endif %}>2</option>
+                            <option value="3" {% if floor_number == "3" %}selected{% endif %}>3</option>
+                            <option value="4" {% if floor_number == "4" %}selected{% endif %}>4</option>
+                            <option value="5_plus" {% if floor_number == "5_plus" %}selected{% endif %}>5+</option>
+                        </select>
+                    </div>
+                    <div class="filter-actions">
+                        <a href="{% url 'apartment_list' %}?sort_by={{ sort_by }}" class="filter-reset-link">
+                            Wyczyść filtry
+                        </a>
 
-                    <button class="filter-submit-button" type="submit">
-                        Zastosuj
-                    </button>
-                </div>
+                        <button class="filter-submit-button" type="submit">
+                            Zastosuj
+                        </button>
+                    </div>
             </form>
         </section>
 
@@ -115,10 +117,11 @@
             <div class="apartments-panel-header {% if not apartments %}apartments-panel-header--empty{% endif %}">
                 <div>
                     <h2>Lista mieszkań</h2>
-                    <p>{{ apartments|length }} ofert dostępnych</p>
+                    <p>{{ page_obj.paginator.count }} ofert dostępnych</p>
                 </div>
                 {% if apartments %}
                     <form method="get" class="apartments-panel-actions">
+                        <input type="hidden" name="per_page" value="{{ per_page }}">
                         <input type="hidden" name="city" value="{{ selected_city }}">
                         <input type="hidden" name="min_price" value="{{ min_price }}">
                         <input type="hidden" name="max_price" value="{{ max_price }}">
@@ -203,31 +206,67 @@
                 </div>
             {% endif %}
 
-            {% if apartments %}
+
             <div class="apartments-pagination">
                 <div class="apartments-pagination-summary">
-                    1-10 / 15
+                    {{ page_obj.start_index }} - {{ page_obj.end_index }} / {{ page_obj.paginator.count }}
                 </div>
+
                 <div class="apartments-pagination-controls">
-                    <a href="{% url 'apartment_list' %}" class="pagination-button">←</a>
-                    <a href="{% url 'apartment_list' %}" class="pagination-page is-active">1</a>
-                    <a href="{% url 'apartment_list' %}" class="pagination-page">2</a>
-                    <a href="{% url 'apartment_list' %}" class="pagination-page">3</a>
-                    <p class="pagination-ellipsis">...</p>
-                    <a href="{% url 'apartment_list' %}" class="pagination-page">25</a>
-                    <a href="{% url 'apartment_list' %}" class="pagination-button">→</a>
+                    {% if page_obj.has_previous %}
+                        <a href="?{{ query_string }}&page={{ page_obj.previous_page_number }}">
+                            &lsaquo;
+                        </a>
+                    {% endif %}
+
+                    {% for page_number in page_range %}
+
+                        {% if page_number == page_obj.paginator.ELLIPSIS %}
+                            <span class="pagination-ellipsis">{{ page_number }}</span>
+
+                        {% elif page_number == page_obj.number %}
+                            <span class="is-active">{{ page_number }}</span>
+
+                        {% else %}
+                            <a href="?{{ query_string }}&page={{ page_number }}">
+                                {{ page_number }}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <a href="?{{ query_string }}&page={{ page_obj.next_page_number }}">
+                            &rsaquo;
+                        </a>
+                    {% endif %}
                 </div>
-                <div class="apartments-page-size">
-                    <span class="page-size-label">
-                        Pokaż na stronie:
-                    </span>
-                    <button class="page-size-button" type="button">
-                        <span>10</span>
-                        <span class="page-size-icon">▾</span>
-                    </button>
-                </div>
+
+                <form method="get" class="apartments-page-size">
+                    <input type="hidden" name="city" value="{{ selected_city }}">
+                    <input type="hidden" name="min_price" value="{{ min_price }}">
+                    <input type="hidden" name="max_price" value="{{ max_price }}">
+                    <input type="hidden" name="min_area" value="{{ min_area }}">
+                    <input type="hidden" name="max_area" value="{{ max_area }}">
+                    <input type="hidden" name="rooms_number" value="{{ rooms_number }}">
+                    <input type="hidden" name="floor_number" value="{{ floor_number }}">
+                    <input type="hidden" name="sort_by" value="{{ sort_by }}">
+
+                    <span class="page-size-label">Pokaż na stronie:</span>
+
+                    <select
+                        name="per_page"
+                        class="filter-value page-size-select"
+                        onchange="this.form.submit()"
+                    >
+                        {% for size in page_size_options %}
+                            <option value="{{ size }}" {% if size == per_page %}selected{% endif %}>
+                                {{ size }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </form>
             </div>
-            {% endif %}
+
         </section>
     </section>
 {% endblock %}
