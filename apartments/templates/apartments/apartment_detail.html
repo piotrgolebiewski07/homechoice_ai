@@ -1,0 +1,25 @@
+{% extends 'apartments/base.html' %}
+{% load humanize %}
+
+{% block title %}Szczegóły mieszkania {% endblock %}
+
+{% block site %}
+    <section class="apartment-detail-page">
+        <a href="{% url 'apartment_list' %}">
+            ← Wróć do listy mieszkań
+        </a>
+
+        <h1>
+            {{ apartment.city }}
+            {% if apartment.district %}
+                {{ apartment.district }}
+            {% endif %}
+        </h1>
+
+        <p>{{ apartment.price|floatformat:0|intcomma }} zł </p>
+        <p>{{ apartment.area }} m²</p>
+        <p>{{ apartment.rooms }} pokoje</p>
+
+
+    </section>
+{% endblock %}

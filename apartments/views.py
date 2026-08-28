@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Apartment
 from django.db.models import F
 from django.core.paginator import Paginator
@@ -112,9 +112,19 @@ def apartment_list(request):
             "query_string": query_string,
             "page_range": page_range,
             "per_page": per_page,
-            "per_page": per_page,
             "page_size_options": PAGE_SIZE_OPTIONS,
             "page_size_query_string": page_size_query_string,
         }
     )
 
+
+def apartment_detail(request, apartment_id):
+    apartment = get_object_or_404(Apartment, pk=apartment_id)
+
+    return render(
+        request,
+        "apartments/apartment_detail.html",
+        {
+            "apartment": apartment,
+        }
+    )
