@@ -5,7 +5,7 @@ class Apartment(models.Model):
     MARKET_CHOICES = [
         ("primary", "Pierwotny"),
         ("secondary", "Wtórny"),
-        ("unknown", "Brak danych"),
+        ("", "Brak danych"),
     ]
 
     city = models.CharField(max_length=100)
@@ -21,7 +21,7 @@ class Apartment(models.Model):
     rooms = models.PositiveSmallIntegerField()
     floor = models.PositiveSmallIntegerField()
     year_built = models.PositiveSmallIntegerField(null=True, blank=True)
-    market_type = models.CharField(max_length=20, choices=MARKET_CHOICES,)
+    market_type = models.CharField(max_length=20, choices=MARKET_CHOICES, blank=True, default="")
 
     @property
     def price_per_sqm(self):
