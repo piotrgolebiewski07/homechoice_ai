@@ -160,18 +160,88 @@
             </section>
 
             <aside class="apartment-analysis">
-                <h2>Analiza oferty</h2>
+                <div class="apartment-analysis-header">
+                    <h2>Analiza oferty</h2>
+
+                    <span class="analysis-header-icon">
+                        <i class="bi bi-stars"></i>
+                    </span>
+                </div>
 
                 <p class="analysis-status-title">Nasza ocena</p>
                 <div class="analysis-status">
                     Atrakcyjna
                 </div>
 
+                <p class="analysis-status-description">
+                    Oferta poniżej średniej rynkowej
+                </p>
+
                 <div class="analysis-comparison">
-                    Porównanie cen
+                    <p class="analysis-comparison-title">Porównanie cen</p>
+
+                    <p class="analysis-comparison-description">
+                        Cena oferty względem średniej w okolicy
+                    </p>
+
+                    <div class="analysis-price-scale">
+                        <div class="analysis-price-scale-track">
+                            <span class="analysis-price-scale-segment analysis-price-scale-segment--low"></span>
+                            <span class="analysis-price-scale-segment analysis-price-scale-segment--average"></span>
+                            <span class="analysis-price-scale-segment analysis-price-scale-segment--high"></span>
+
+                            <span class="analysis-price-marker"></span>
+                        </div>
+                    </div>
+
+                    <div class="analysis-price-scale-labels">
+                        <span>Poniżej<br>średniej</span>
+                        <span>Średnia</span>
+                        <span>Powyżej<br>średniej</span>
+                    </div>
+
+                    <div class="analysis-insight">
+                        <i class="bi bi-graph-up-arrow analysis-insight-icon"></i>
+
+                        <p>
+                            Wynik porównania zostanie wyliczony na podstawie cen w okolicy.
+                        </p>
+                    </div>
+
+                    <div class="analysis-metrics">
+                        <div class="analysis-metric">
+                            <div class="analysis-metric-label">
+                                <i class="bi bi-tag"></i>
+                                <span>Cena za m²</span>
+                            </div>
+
+                            <div class="analysis-metric-value">
+                                {{ apartment.price_per_sqm|floatformat:0|intcomma }} zł
+                            </div>
+                        </div>
+
+                        <div class="analysis-metric">
+                            <div class="analysis-metric-label">
+                                <i class="bi bi-bar-chart-line"></i>
+                                <span>Relacja do średniej</span>
+                            </div>
+
+                            <div class="analysis-metric-value">—</div>
+                        </div>
+
+                        <div class="analysis-metric">
+                            <div class="analysis-metric-label">
+                                <i class="bi bi-graph-up-arrow"></i>
+                                <span>Potencjał wzrostu</span>
+                            </div>
+
+                            <div class="analysis-metric-value">—</div>
+                        </div>
+                    </div>
                 </div>
 
                 <button class="analysis-action" type="button">
+                    <i class="bi bi-arrow-left-right"></i>
                     Porównaj oferty
                 </button>
             </aside>
