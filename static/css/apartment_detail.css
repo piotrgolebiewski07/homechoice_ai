@@ -122,7 +122,8 @@
 }
 
 /* Szczegóły oferty */
-.apartment-features {
+.apartment-features,
+.apartment-description {
     background: #ffffff;
     margin-top: 24px;
     padding: 24px;
@@ -130,7 +131,8 @@
     border-radius: 16px;
 }
 
-.apartment-features h2 {
+.apartment-features h2,
+.apartment-description h2 {
     margin: 0;
     color: #0f1d46;
     font-size: 1.1rem;

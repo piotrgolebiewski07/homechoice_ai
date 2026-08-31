@@ -87,6 +87,9 @@
                             <div class="apartment-feature-content">
                                 <div class="apartment-feature-value">
                                     {{ apartment.floor }}
+                                    {% if apartment.floor_count %}
+                                        / {{apartment.floor_count }}
+                                    {% endif %}
                                 </div>
 
                                 <div class="apartment-feature-label">
@@ -129,6 +132,30 @@
 
                 <div class="apartment-description">
                     <h2>Opis oferty</h2>
+                    <p>
+                        Lokal o powierzchni {{ apartment.area }} m², z {{ apartment.rooms }} pokojami.
+                        Znajduje się na {{ apartment.floor }} piętrze{% if apartment.floor_count %} w {{ apartment.floor_count }}-piętrowym budynku{% else %} w budynku{% endif %}{% if apartment.year_built %} z&nbsp;{{ apartment.year_built|unlocalize }}&nbsp;roku{% endif %}.
+                    </p>
+                        {% if apartment.has_balcony or apartment.has_elevator or apartment.has_parking %}
+                            <div class="apartment-extra-features">
+                                <p>Dodatkowe atuty:</p>
+
+                                <ul>
+                                    {% if apartment.has_balcony %}
+                                        <li>Balkon</li>
+                                    {% endif %}
+
+                                    {% if apartment.has_elevator %}
+                                        <li>Winda</li>
+                                    {% endif %}
+
+                                    {% if apartment.has_parking %}
+                                        <li>Miejsce parkingowe</li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        {% endif %}
+
                 </div>
             </section>
 

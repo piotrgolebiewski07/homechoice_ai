@@ -20,8 +20,12 @@ class Apartment(models.Model):
     area = models.DecimalField(max_digits=6, decimal_places=2)
     rooms = models.PositiveSmallIntegerField()
     floor = models.PositiveSmallIntegerField()
+    floor_count = models.PositiveSmallIntegerField(null=True, blank=True)
     year_built = models.PositiveSmallIntegerField(null=True, blank=True)
     market_type = models.CharField(max_length=20, choices=MARKET_CHOICES, blank=True, default="")
+    has_balcony = models.BooleanField(null=True, blank=True)
+    has_elevator = models.BooleanField(null=True, blank=True)
+    has_parking = models.BooleanField(null=True, blank=True)
 
     @property
     def price_per_sqm(self):
