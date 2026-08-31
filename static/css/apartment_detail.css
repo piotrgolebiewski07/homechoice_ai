@@ -1,0 +1,375 @@
+.apartment-detail-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 24px 56px;
+}
+
+.apartment-detail-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+.back-to-list-link {
+    color: #6d28d9;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.apartment-summary {
+    padding: 28px;
+    border-radius: 16px;
+    border: 1px solid #e3e8f0;
+    background: linear-gradient(135deg, #f2eeff 0%, #faf7ff 100%);
+    position: relative;
+    overflow: hidden;
+    min-height: 230px;
+
+}
+
+.apartment-summary h1 {
+    margin: 0;
+    color: #0f1d46;
+    letter-spacing: 0.06em;
+    word-spacing: 0.04em;
+    font-size: 3.2rem;
+}
+
+.apartment-summary-content {
+    position: relative;
+    z-index: 1;
+}
+
+.apartment-summary-illustration {
+    position: absolute;
+    right: -30px;
+    bottom: -25px;
+    z-index: 0;
+    width: 70%;
+    opacity: 0.55;
+    pointer-events: none;
+}
+
+.apartment-summary-illustration img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.apartment-location {
+    color: #6d28d9;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 45px;
+    margin: 24px 0 34px;
+}
+
+.apartment-price-per-sqm {
+    color: #5b6780;
+    margin-top: 16px;
+    font-size: 1.4rem;
+}
+
+.apartment-market-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    display: inline-flex;
+    margin-top: 26px;
+    padding: 6px 10px;
+    color: #6d28d9;
+    background-color: #f0e8ff;
+    border: 1px solid #e4d5ff;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.apartment-market-icon {
+    font-size: 1rem;
+}
+
+/* Analiza oferty */
+.apartment-analysis {
+    background-color: #ffffff;
+    padding: 24px;
+    border: 1px solid #e3e8f0;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(15, 29, 70, 0.08);
+}
+
+.apartment-analysis h2 {
+    margin: 0;
+    color: #0f1d46;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.apartment-analysis-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.analysis-header-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    color: #6d28d9;
+    background-color: #f0e8ff;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.analysis-status-title {
+    color: #5b6780;
+    font-size:0.7rem;
+    margin: 30px 0 0;
+}
+
+.analysis-status {
+    color: #6d28d9;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin: 8px 0 0;
+}
+
+.analysis-status-description {
+    margin: 6px 0 0;
+    color: #5b6780;
+    font-size: 0.75rem;
+    line-height: 1.5;
+}
+/* Pasek */
+.analysis-comparison {
+    margin-top: 24px;
+}
+
+.analysis-price-scale {
+    margin-top: 14px;
+}
+
+.analysis-price-scale-track {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    height: 5px;
+    border-radius: 999px;
+}
+
+.analysis-price-scale-segment--low {
+    background-color: #4ade80;
+    border-radius: 999px 0 0 999px;
+}
+
+.analysis-price-scale-segment--average {
+    background-color: #a78bfa;
+}
+
+.analysis-price-scale-segment--high {
+    background-color: #f59e8b;
+    border-radius: 0 999px 999px 0;
+}
+
+.analysis-price-marker {
+    position: absolute;
+    left: 22%;
+    bottom: 4px;
+    width: 10px;
+    height: 10px;
+    background-color: #6d28d9;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    transform: translateX(-50%);
+}
+
+.analysis-price-scale-labels {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 10px;
+    color: #5b6780;
+    font-size: 0.65rem;
+    line-height: 1.35;
+}
+
+.analysis-price-scale-labels span:first-child {
+    color: #6d28d9;
+    text-align: left;
+}
+
+.analysis-price-scale-labels span:nth-child(2) {
+    text-align: center;
+}
+
+.analysis-price-scale-labels span:last-child {
+    text-align: right;
+}
+
+.analysis-insight {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 18px;
+    padding: 12px;
+    background-color: #f4f0ff;
+    border-radius: 8px;
+}
+
+.analysis-insight-icon {
+    flex: 0 0 auto;
+    color: #6d28d9;
+    font-size: 1rem;
+}
+
+.analysis-insight p {
+    margin: 0;
+    color: #5b6780;
+    font-size: 0.72rem;
+    line-height: 1.5;
+}
+
+/* Metryki analizy */
+.analysis-metrics {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e3e8f0;
+}
+
+.analysis-metric {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.analysis-metric + .analysis-metric {
+    margin-top: 14px;
+}
+
+.analysis-metric-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #5b6780;
+    font-size: 0.75rem;
+}
+
+.analysis-metric-label i {
+    color: #5b6780;
+    font-size: 0.9rem;
+}
+
+.analysis-metric-value {
+    color: #6d28d9;
+    font-size: 0.75rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.analysis-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    margin-top: 24px;
+    padding: 12px 16px;
+    color: #ffffff;
+    background-color: #6d28d9;
+    border: 0;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.analysis-action:hover {
+    background-color: #7c3aed;
+    transform: translateY(-1px);
+}
+
+/* Szczegóły oferty */
+.apartment-features,
+.apartment-description {
+    background: #ffffff;
+    margin-top: 24px;
+    padding: 24px;
+    border: 1px solid #e3e8f0;
+    border-radius: 16px;
+}
+
+.apartment-features h2,
+.apartment-description h2 {
+    margin: 0;
+    color: #0f1d46;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+.apartment-features-grid {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    gap: 8px;
+}
+
+.apartment-feature {
+    background: #ffffff;
+    border: 1px solid #e3e8f0;
+    border-radius: 8px;
+    padding: 12px 8px;
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+}
+
+.apartment-feature-value {
+    color: #0f1d46;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.apartment-feature-label {
+    color: #5b6780;
+    font-size: 0.7rem;
+    margin-top: 4px;
+}
+
+.apartment-feature-icon {
+    color: #8b5cf6;
+    font-size: 1.5rem;
+}
+
+/* Opis oferty */
+.apartment-extra-features {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e3e8f0;
+}
+
+.apartment-extra-features p {
+    margin: 0 0 8px;
+    color: #5b6780;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.apartment-extra-features ul {
+    margin: 0;
+    padding-left: 18px;
+    color: #0f1d46;
+    font-size: 0.85rem;
+}
+
+.apartment-extra-features li + li {
+    margin-top: 4px;
+}

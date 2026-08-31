@@ -163,7 +163,10 @@
                 </div>
 
                 {% for apartment in apartments %}
-                    <article class="apartment-row">
+                    <a
+                        href="{% url 'apartment_detail' apartment.pk %}"
+                        class="apartment-row">
+
                         <div class="apartment-location">
                             <p class="apartment-city">{{ apartment.city }}</p>
                             {% if apartment.district %}
@@ -197,7 +200,7 @@
                                 <span>—</span>
                             {% endif %}
                         </p>
-                    </article>
+                    </a>
                 {% endfor %}
             {% else %}
                 <div class="apartments-empty-state">

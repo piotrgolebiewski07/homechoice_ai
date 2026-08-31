@@ -1,0 +1,255 @@
+{% extends 'apartments/base.html' %}
+{% load static humanize l10n %}
+
+{% block title %}Szczegóły mieszkania {% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/apartment_detail.css' %}">
+{% endblock %}
+
+{% block site %}
+    <section class="apartment-detail-page">
+        <a href="{% url 'apartment_list' %}" class="back-to-list-link">
+            ← Wróć do listy mieszkań
+        </a>
+
+        <div class="apartment-detail-layout">
+            <section class="apartment-overview">
+                <div class="apartment-summary">
+                    <div class="apartment-summary-content">
+                        <div class="apartment-location">
+                            <i class="bi bi-geo-alt apartment-location-icon"></i>
+                            {{ apartment.city }}
+                            {% if apartment.district %}
+                                {{ apartment.district }}
+                            {% endif %}
+                        </div>
+
+                        <h1>
+                            {{ apartment.price|floatformat:0|intcomma }} zł
+                        </h1>
+
+                        <div class="apartment-price-per-sqm">
+                            {{ apartment.price_per_sqm|floatformat:0|intcomma }} zł/m²
+                        </div>
+
+                        {% if apartment.market_type %}
+                            <div class="apartment-market-badge">
+                                <i class="bi bi-graph-up-arrow apartment-market-icon"></i>
+                                Rynek {{ apartment.get_market_type_display }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="apartment-summary-illustration">
+                        <img
+                            src="{% static 'images/detal_building.png' %}"
+                            alt=""
+                            aria-hidden="true"
+                            class="apartment-summary-illustration-image"
+                            >
+                    </div>
+                </div>
+
+                <div class="apartment-features">
+                    <h2>Szczegóły oferty</h2>
+
+                    <div class="apartment-features-grid">
+                        <div class="apartment-feature">
+                            <i class="bi bi-rulers apartment-feature-icon"></i>
+
+                            <div class="apartment-feature-content">
+                                <div class="apartment-feature-value">
+                                    {{ apartment.area }} m²
+                                </div>
+
+                                <div class="apartment-feature-label">
+                                    Metraż
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="apartment-feature">
+                            <i class="bi bi-door-open apartment-feature-icon"></i>
+                            <div class="apartment-feature-content">
+                                <div class="apartment-feature-value">
+                                    {{ apartment.rooms }}
+                                </div>
+
+                                <div class="apartment-feature-label">
+                                    Liczba pokoi
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="apartment-feature">
+                            <i class="bi bi-bar-chart-steps  apartment-feature-icon"></i>
+                            <div class="apartment-feature-content">
+                                <div class="apartment-feature-value">
+                                    {{ apartment.floor }}
+                                    {% if apartment.floor_count %}
+                                        / {{apartment.floor_count }}
+                                    {% endif %}
+                                </div>
+
+                                <div class="apartment-feature-label">
+                                    Piętro
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="apartment-feature">
+                            <i class="bi bi-calendar3 apartment-feature-icon"></i>
+                            <div class="apartment-feature-content">
+                                <div class="apartment-feature-value">
+                                    {{ apartment.year_built|unlocalize }}
+                                </div>
+
+                                <div class="apartment-feature-label">
+                                    Rok budowy
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="apartment-feature">
+                            <i class="bi bi-graph-up-arrow apartment-feature-icon"></i>
+                            <div class="apartment-feature-content">
+                                <div class="apartment-feature-value">
+                                    {% if apartment.market_type %}
+                                        {{ apartment.get_market_type_display }}
+                                    {% else %}
+                                        Nie podano
+                                    {% endif %}
+                                </div>
+
+                                <div class="apartment-feature-label">
+                                    Typ rynku
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="apartment-description">
+                    <h2>Opis oferty</h2>
+                    <p>
+                        Lokal o powierzchni {{ apartment.area }} m², z {{ apartment.rooms }} pokojami.
+                        Znajduje się na {{ apartment.floor }} piętrze{% if apartment.floor_count %} w {{ apartment.floor_count }}-piętrowym budynku{% else %} w budynku{% endif %}{% if apartment.year_built %} z&nbsp;{{ apartment.year_built|unlocalize }}&nbsp;roku{% endif %}.
+                    </p>
+                        {% if apartment.has_balcony or apartment.has_elevator or apartment.has_parking %}
+                            <div class="apartment-extra-features">
+                                <p>Dodatkowe atuty:</p>
+
+                                <ul>
+                                    {% if apartment.has_balcony %}
+                                        <li>Balkon</li>
+                                    {% endif %}
+
+                                    {% if apartment.has_elevator %}
+                                        <li>Winda</li>
+                                    {% endif %}
+
+                                    {% if apartment.has_parking %}
+                                        <li>Miejsce parkingowe</li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        {% endif %}
+
+                </div>
+            </section>
+
+            <aside class="apartment-analysis">
+                <div class="apartment-analysis-header">
+                    <h2>Analiza oferty</h2>
+
+                    <span class="analysis-header-icon">
+                        <i class="bi bi-stars"></i>
+                    </span>
+                </div>
+
+                <p class="analysis-status-title">Nasza ocena</p>
+                <div class="analysis-status">
+                    Atrakcyjna
+                </div>
+
+                <p class="analysis-status-description">
+                    Oferta poniżej średniej rynkowej
+                </p>
+
+                <div class="analysis-comparison">
+                    <p class="analysis-comparison-title">Porównanie cen</p>
+
+                    <p class="analysis-comparison-description">
+                        Cena oferty względem średniej w okolicy
+                    </p>
+
+                    <div class="analysis-price-scale">
+                        <div class="analysis-price-scale-track">
+                            <span class="analysis-price-scale-segment analysis-price-scale-segment--low"></span>
+                            <span class="analysis-price-scale-segment analysis-price-scale-segment--average"></span>
+                            <span class="analysis-price-scale-segment analysis-price-scale-segment--high"></span>
+
+                            <span class="analysis-price-marker"></span>
+                        </div>
+                    </div>
+
+                    <div class="analysis-price-scale-labels">
+                        <span>Poniżej<br>średniej</span>
+                        <span>Średnia</span>
+                        <span>Powyżej<br>średniej</span>
+                    </div>
+
+                    <div class="analysis-insight">
+                        <i class="bi bi-graph-up-arrow analysis-insight-icon"></i>
+
+                        <p>
+                            Wynik porównania zostanie wyliczony na podstawie cen w okolicy.
+                        </p>
+                    </div>
+
+                    <div class="analysis-metrics">
+                        <div class="analysis-metric">
+                            <div class="analysis-metric-label">
+                                <i class="bi bi-tag"></i>
+                                <span>Cena za m²</span>
+                            </div>
+
+                            <div class="analysis-metric-value">
+                                {{ apartment.price_per_sqm|floatformat:0|intcomma }} zł
+                            </div>
+                        </div>
+
+                        <div class="analysis-metric">
+                            <div class="analysis-metric-label">
+                                <i class="bi bi-bar-chart-line"></i>
+                                <span>Relacja do średniej</span>
+                            </div>
+
+                            <div class="analysis-metric-value">—</div>
+                        </div>
+
+                        <div class="analysis-metric">
+                            <div class="analysis-metric-label">
+                                <i class="bi bi-graph-up-arrow"></i>
+                                <span>Potencjał wzrostu</span>
+                            </div>
+
+                            <div class="analysis-metric-value">—</div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="analysis-action" type="button">
+                    <i class="bi bi-arrow-left-right"></i>
+                    Porównaj oferty
+                </button>
+            </aside>
+        </div>
+
+
+
+
+
+    </section>
+{% endblock %}
