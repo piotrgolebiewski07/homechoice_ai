@@ -1,7 +1,6 @@
 import csv
 from pathlib import Path
 from decimal import Decimal
-from itertools import islice
 
 from django.core.management.base import BaseCommand
 from apartments.models import Apartment
@@ -39,7 +38,7 @@ class Command(BaseCommand):
             created_count = 0
             updated_count = 0
 
-            for row in islice(reader, 10):
+            for row in reader:
                 apartment_data = {
                     "source_id": row["source_id"],
                     "city": row["city"],
@@ -71,5 +70,5 @@ class Command(BaseCommand):
                 else:
                     updated_count += 1
 
-        message = f"Testowy import zakończony. Dodano {created_count}, zaktualizowano: {updated_count}."
+        message = f"Import zakończony. Dodano {created_count}, zaktualizowano: {updated_count}."
         self.stdout.write(message)
