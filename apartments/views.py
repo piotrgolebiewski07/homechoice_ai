@@ -121,10 +121,19 @@ def apartment_list(request):
 def apartment_detail(request, apartment_id):
     apartment = get_object_or_404(Apartment, pk=apartment_id)
 
+    marker_position = None
+
+    if apartment.price_difference_pct is not None:
+        price_difference = float(apartment.price_difference_pct)
+
+        marker_position = ((price_difference + 30) / 60) * 100
+        marker_position = round(max(0, min(marker_position, 100)))
+
     return render(
         request,
         "apartments/apartment_detail.html",
         {
             "apartment": apartment,
+            "marker_position": marker_position,
         }
     )
