@@ -164,7 +164,7 @@
 
                 {% for apartment in apartments %}
                     <a
-                        href="{% url 'apartment_detail' apartment.pk %}"
+                        href="{% url 'apartment_detail' apartment.pk %}?next={{ request.get_full_path|urlencode }}"
                         class="apartment-row">
 
                         <div class="apartment-location">

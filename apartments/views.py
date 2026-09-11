@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from .models import Apartment
 from django.db.models import F
 from django.core.paginator import Paginator
+from django.urls import reverse
+from django.utils.http import url_has_allowed_host_and_scheme
 
 PAGE_SIZE_OPTIONS = (10, 20, 50)
 
@@ -120,7 +122,14 @@ def apartment_list(request):
 
 def apartment_detail(request, apartment_id):
     apartment = get_object_or_404(Apartment, pk=apartment_id)
+    back_url = request.GET.get("next")
 
+    if not back_url or not url_has_allowed_host_and_scheme(
+        url=back_url,
+        allowed_hosts={request.get_host()},
+        require_https=request.is_secure(),
+    ):
+        back_url = reverse("apartment_list")
     marker_position = None
 
     if apartment.price_difference_pct is not None:
@@ -135,5 +144,6 @@ def apartment_detail(request, apartment_id):
         {
             "apartment": apartment,
             "marker_position": marker_position,
+            "back_url": back_url,
         }
     )
