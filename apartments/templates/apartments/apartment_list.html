@@ -14,7 +14,7 @@
         <section class="apartment-hero">
             <div class="apartment-hero-content">
                 <h1>Znajdź mieszkanie, które pasuje do Ciebie</h1>
-                <p class="page-description">Przeglądaj ofery i porównuj najważniejsze dane mieszkań.</p>
+                <p class="page-description">Przeglądaj oferty i porównuj najważniejsze dane mieszkań.</p>
             </div>
 
             <img
@@ -191,8 +191,13 @@
                         </p>
 
                         <p class="apartment-floor-rooms">
-                            {{ apartment.floor }}
+                            {% if apartment.floor is not None %}
+                                {{ apartment.floor }}
+                            {% else %}
+                                <span>—</span>
+                            {% endif %}
                         </p>
+
                         <p class="apartment-year-built">
                             {% if apartment.year_built %}
                                 {{ apartment.year_built|unlocalize }}

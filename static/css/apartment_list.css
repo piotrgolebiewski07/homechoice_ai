@@ -354,7 +354,7 @@
     color: #5b6780;
 }
 
-.sort-button,
+.sort-button {
     display: flex;
     gap: 10px;
     align-items: center;
