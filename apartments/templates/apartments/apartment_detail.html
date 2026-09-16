@@ -86,9 +86,13 @@
                             <i class="bi bi-bar-chart-steps  apartment-feature-icon"></i>
                             <div class="apartment-feature-content">
                                 <div class="apartment-feature-value">
-                                    {{ apartment.floor }}
-                                    {% if apartment.floor_count %}
-                                        / {{apartment.floor_count }}
+                                    {% if apartment.floor is not None %}
+                                        {{ apartment.floor }}
+                                        {% if apartment.floor_count is not None %}
+                                            / {{ apartment.floor_count }}
+                                        {% endif %}
+                                    {% else %}
+                                        Nie podano
                                     {% endif %}
                                 </div>
 
@@ -102,7 +106,11 @@
                             <i class="bi bi-calendar3 apartment-feature-icon"></i>
                             <div class="apartment-feature-content">
                                 <div class="apartment-feature-value">
-                                    {{ apartment.year_built|unlocalize }}
+                                    {% if apartment.year_built is not None %}
+                                        {{ apartment.year_built|unlocalize }}
+                                    {% else %}
+                                        Nie podano
+                                    {% endif %}
                                 </div>
 
                                 <div class="apartment-feature-label">
@@ -133,8 +141,25 @@
                 <div class="apartment-description">
                     <h2>Opis oferty</h2>
                     <p>
-                        Lokal o powierzchni {{ apartment.area }} m², z {{ apartment.rooms }} pokojami.
-                        Znajduje się na {{ apartment.floor }} piętrze{% if apartment.floor_count %} w {{ apartment.floor_count }}-piętrowym budynku{% else %} w budynku{% endif %}{% if apartment.year_built %} z&nbsp;{{ apartment.year_built|unlocalize }}&nbsp;roku{% endif %}.
+                        Lokal o powierzchni {{ apartment.area }} m², z {{ apartment.rooms }}
+                        {% if apartment.rooms == 1 %}
+                            pokojem.
+                        {% else %}
+                            pokojami.
+                        {% endif %}
+
+                        {% if apartment.floor is not None %}
+                            Znajduje się na {{ apartment.floor }}. piętrze
+                            {% if apartment.floor_count is not None %}
+                                w {{ apartment.floor_count }}-piętrowym budynku
+                            {% endif %}.
+                        {% else %}
+                            Nie podano piętra, na którym znajduje się mieszkanie.
+                        {% endif %}
+
+                        {% if apartment.year_built is not None %}
+                            Budynek został wybudowany w {{ apartment.year_built|unlocalize }} roku.
+                        {% endif %}
                     </p>
                         {% if apartment.has_balcony or apartment.has_elevator or apartment.has_parking %}
                             <div class="apartment-extra-features">
@@ -223,7 +248,11 @@
                             </div>
 
                             <div class="analysis-metric-value">
-                                {{ apartment.price_per_sqm|floatformat:0|intcomma }} zł
+                                {% if apartment.price_per_sqm is not None %}
+                                    {{ apartment.price_per_sqm|floatformat:0|intcomma }} zł/m²
+                                {% else %}
+                                    Brak danych
+                                {% endif %}
                             </div>
                         </div>
 
@@ -234,7 +263,11 @@
                             </div>
 
                             <div class="analysis-metric-value">
-                                {% if apartment.price_difference_pct > 0 %}+{% endif %}{{ apartment.price_difference_pct|floatformat:2 }}%
+                                {% if apartment.price_difference_pct is not None %}
+                                    {% if apartment.price_difference_pct > 0 %}+{% endif %}{{ apartment.price_difference_pct|floatformat:2 }}%
+                                {% else %}
+                                    Brak danych
+                                {% endif %}
                             </div>
                         </div>
 
@@ -245,7 +278,11 @@
                             </div>
 
                             <div class="analysis-metric-value">
-                                {{ apartment.city_median_price_per_sqm|floatformat:2|intcomma }} zł/m²
+                                {% if apartment.city_median_price_per_sqm is not None %}
+                                    {{ apartment.city_median_price_per_sqm|floatformat:2|intcomma }} zł/m²
+                                {% else %}
+                                    Brak danych
+                                {% endif %}
                             </div>
                         </div>
                     </div>

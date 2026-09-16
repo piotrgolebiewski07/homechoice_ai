@@ -227,6 +227,7 @@
     border: 1px solid #e3e8f0;
     border-left: 4px solid #0ea5e9;
     border-radius: 10px;
+    text-decoration: none;
     transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
@@ -354,7 +355,7 @@
     color: #5b6780;
 }
 
-.sort-button,
+.sort-button {
     display: flex;
     gap: 10px;
     align-items: center;
