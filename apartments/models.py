@@ -15,7 +15,6 @@ class Apartment(models.Model):
         null=True,
         blank=True,
     )
-    district = models.CharField(max_length=100, blank=True)
     price = models.DecimalField(max_digits=12, decimal_places=2)
     area = models.DecimalField(max_digits=6, decimal_places=2)
     rooms = models.PositiveSmallIntegerField()
@@ -53,5 +52,5 @@ class Apartment(models.Model):
         return self.price / self.area
 
     def __str__(self):
-        return f"{self.city} - {self.district} ({self.area}) m² - {self.price}"
+        return f"{self.city} - {self.area} m² - {self.price} zł"
 

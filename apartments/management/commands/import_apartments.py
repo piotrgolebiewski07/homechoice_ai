@@ -42,7 +42,6 @@ class Command(BaseCommand):
                 apartment_data = {
                     "source_id": row["source_id"],
                     "city": row["city"],
-                    "district": "",
                     "price": parse_decimal(row["price"]),
                     "area": parse_decimal(row["area"]),
                     "rooms": int(row["rooms"]),

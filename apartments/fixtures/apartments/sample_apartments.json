@@ -4,7 +4,6 @@
   "pk": 1,
   "fields": {
     "city": "Warszawa",
-    "district": "Mokotów",
     "price": "920000.00",
     "area": "54.50",
     "rooms": 3,
@@ -17,8 +16,7 @@
   "model": "apartments.apartment",
   "pk": 2,
   "fields": {
-    "city": "Kraków",
-    "district": "Podgórze",
+    "city": "Krakï¿½w",
     "price": "715000.00",
     "area": "48.00",
     "rooms": 2,
@@ -31,8 +29,7 @@
   "model": "apartments.apartment",
   "pk": 3,
   "fields": {
-    "city": "Wroc³aw",
-    "district": "Krzyki",
+    "city": "Wrocï¿½aw",
     "price": "640000.00",
     "area": "61.20",
     "rooms": 3,
@@ -45,8 +42,7 @@
   "model": "apartments.apartment",
   "pk": 4,
   "fields": {
-    "city": "Gdañsk",
-    "district": "Przymorze",
+    "city": "Gdaï¿½sk",
     "price": "810000.00",
     "area": "57.80",
     "rooms": 3,
@@ -59,8 +55,7 @@
   "model": "apartments.apartment",
   "pk": 5,
   "fields": {
-    "city": "Poznañ",
-    "district": "Je¿yce",
+    "city": "Poznaï¿½",
     "price": "525000.00",
     "area": "42.30",
     "rooms": 2,
