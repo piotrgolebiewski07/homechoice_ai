@@ -71,3 +71,39 @@ class ApartmentDetailViewTests(TestCase):
         )
 
         self.assertEqual(response.context["marker_position"], 75)
+
+    def test_marker_position_does_not_exceed_100(self):
+        self.apartment.price_difference_pct = Decimal("50.00")
+        self.apartment.save(
+            update_fields=["price_difference_pct"]
+        )
+
+        response = self.client.get(
+            reverse(
+                "apartment_detail",
+                args=[self.apartment.pk],
+            )
+        )
+
+        self.assertEqual(
+            response.context["marker_position"],
+            100,
+        )
+
+    def test_marker_position_is_not_lower_than_zero(self):
+        self.apartment.price_difference_pct = Decimal("-50.00")
+        self.apartment.save(
+            update_fields=["price_difference_pct"]
+        )
+
+        response = self.client.get(
+            reverse(
+                "apartment_detail",
+                args=[self.apartment.pk],
+            )
+        )
+
+        self.assertEqual(
+            response.context["marker_position"],
+            0,
+        )
